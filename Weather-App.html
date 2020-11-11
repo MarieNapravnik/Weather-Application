@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Week 5</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather-app">
+        <form class="search-bar" id="search-form">
+          <div class="row">
+            <div class="col-6">
+              <input
+              type="search"
+              placeholder="Enter a city.."
+              autofocus="on"
+              class="form-control" 
+              id="city-input"
+              />
+              </div>
+
+              <div class="col-3">
+              <input 
+              type="submit" 
+              value="Search"
+              class="form-control btn btn-primary"
+             />
+            </div>
+        </div>
+        </form>
+
+        <h1 id="city">
+          Prague
+        </h1>
+
+        <ul>
+          <li id="date">
+          </li>
+          <li id="description">Sunny</li>
+        </ul>
+
+        <div class="row">
+          <div class="col-6">
+            <div class="clearfix">
+              <img
+                src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
+                alt="sunny icon"
+                class="sunny-icon float-left"
+              />
+              <div class="float-left">
+                <span class="temperature" id="temperature">20</span>
+                  <span class="units">°C</span>
+                  
+              </div>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <ul>
+                <li>Humidity: <span id="humidity">70</span>%</li>
+                <li>Wind: <span id="wind">5</span>km/h</li>
+              </ul>
+            </div>
+          </div>
+        
+<div class="row">
+  <div class="col-12">
+        <div class="forecast">
+          <div class="row">
+            <div class="col">Saturday</div>
+            <div class="col">Sunday</div>
+            <div class="col">Monday</div>
+            <div class="col">Tuesday</div>
+            <div class="col">Wednesday</div>
+          </div>
+          </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+        <div class="emoji">
+          <div class="row">
+            <div class="col">☀️</div>
+            <div class="col">☀️</div>
+            <div class="col">🌩</div>
+            <div class="col">⛈</div>
+            <div class="col">☀️</div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="temperature-forecast">
+          <div class="row">
+            <div class="col">20°C</div>
+            <div class="col">20°C</div>
+            <div class="col">20°C</div>
+            <div class="col">20°C</div>
+            <div class="col">20°C</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </body>
+
+  <script src="src/index.js"></script>
+  <script
+    src="https://kit.fontawesome.com/ccdeb24d30.js"
+    crossorigin="anonymous"
+  ></script>
+</html>
