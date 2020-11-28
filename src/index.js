@@ -1,4 +1,3 @@
-//challenge 1
 
 let now = new Date();
 
@@ -30,7 +29,6 @@ let day = days[now.getDay()];
 
 li.innerHTML = `${day}, ${hour}:${minutes}`;
 
-//challenge 2
 
 function displayWeatherCondition(response) {
   console.log(response);
@@ -44,7 +42,17 @@ function displayWeatherCondition(response) {
   );
   document.querySelector("#description").innerHTML =
     response.data.weather[0].main;
+
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+  "src", 
+  `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+
 }
+
+
+
+
 
 function search(event) {
   event.preventDefault();
