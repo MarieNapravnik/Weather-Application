@@ -42,82 +42,30 @@ function formatHours(timestamp){
 
 //Date and Time Ends 
 
-function displayWeatherCondition(response) {
-  console.log(response);
-  document.querySelector("#city").innerHTML = response.data.name;
-  document.querySelector("#temperature").innerHTML = Math.round(
-    response.data.main.temp
-  );
-  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-  document.querySelector("#wind").innerHTML = Math.round(
-    response.data.wind.speed
-  );
-  document.querySelector("#description").innerHTML =
-    response.data.weather[0].main;
+///***
+function displayTemperature (response){
+let temperatureElement = document.querySelector("#temperature");
+let cityElement = document.querySelector("#city");
+let descriptionElement = document.querySelector("#description");
+let humidityElement = document.querySelector("#humidity");
+let windElement = document.querySelector("#wind");
+let dateElement = document.querySelector("#date"); 
+let iconElement = document.querySelector("#icon");
 
-  let iconElement = document.querySelector("#icon");
-  iconElement.setAttribute(
-  "src", 
-  `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+celsiusTemperature = response.data.main.temp;
+temperatureElement.innerHTML = Math.round(response.data.main.temp);
+cityElement.innerHTML = response.data.name; 
+descriptionElement.innerHTML = response.data.weather[0].description;
+humidityElement.innerHTML = response.data.main.humidity;
+windElement.innerHTML = Math.round(response.data.wind.speed);
+dateElement.innerHTML = formatDate(response.data.dt*1000);
+iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`); 
+iconElement.setAttribute("alt", response.data.weather[0].description); 
+}; 
 
-}
+///***
 
-
-
-//API Applied
-function search(event) {
-  event.preventDefault();
-  let apiKey = "27b4bb30993897eb41fd3193d860c853";
-  let city = document.querySelector("#city-input").value;
-  let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(displayWeatherCondition);
-
-  apiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(displayForecast);
-}
-
-
-
-function getCurrentLocation(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(function (position) {
-    do_something(position.coords.latitude, position.coords.longitude);
-  });
-}
-
-//
-
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
-
-
-// Default city Starts
-function displayDefaul(response) {
-  console.log(response.data.main.temp);
-  let temperatureElement = document.querySelector("#temperature")
-  let cityElement = document.querySelector("#city");
-  let descriptionElement = document.querySelector("#description");
-  let iconElement = document.querySelector("#icon");
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
-  cityElement.innerHTML = response.data.name;
-  descriptionElement.innerHTML = response.data.weather[0].description; 
-  iconElement.setAttribute("src" , `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-  
-  
-}
-
-let units = "metric";
-  let apiKey = "27b4bb30993897eb41fd3193d860c853"; 
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Brussels&appid=${apiKey}&units=${units}`;
-
-  axios.get(apiUrl).then(displayDefaul);
-
-// Default city Ends
-
-
-//Weather forecast starts
-
+////////
 function displayForecast(response){
     let forecastElement = document.querySelector("#forecast"); 
     forecastElement.innerHTML = null; 
@@ -130,11 +78,9 @@ function displayForecast(response){
             <h5> 
             ${formatHours(forecast.dt*1000)} 
             </h5>
-            <img 
-            src= http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png 
-            alt= ${forecast.weather[0].description}
-            />
-            
+            <img
+        src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"/>
+
             <div class="weather-forecast-temperature">
               <strong> ${Math.round(forecast.main.temp_max)}Cº </strong> 
               ${Math.round(forecast.main.temp_min)
@@ -144,7 +90,29 @@ function displayForecast(response){
     `;   
     }
 }
-//Weather forecast ends
+
+function search(city) {
+  let apiKey = "27b4bb30993897eb41fd3193d860c853";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  
+  axios.get(apiUrl).then(displayTemperature);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+search("Prague");
+
+
 
 
   
