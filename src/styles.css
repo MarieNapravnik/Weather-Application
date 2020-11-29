@@ -23,6 +23,7 @@ li {
   height: 19px;
   line-height: 1;
   list-style: none;
+  text-transform: capitalize;
 }
 
 .weather-app {
@@ -102,4 +103,8 @@ form {
   line-height: 15px;
   padding-top: 7px;
   margin-top: 20px;
+}
+.source {
+  display: block;
+  margin: 0 auto;
 }

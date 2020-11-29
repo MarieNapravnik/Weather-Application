@@ -1,4 +1,4 @@
-
+//Date and Time Starts
 let now = new Date();
 
 let li = document.querySelector("li");
@@ -40,7 +40,7 @@ function formatHours(timestamp){
     return `${hours}:${minutes}`;
 }
 
-
+//Date and Time Ends 
 
 function displayWeatherCondition(response) {
   console.log(response);
@@ -120,3 +120,24 @@ function getCurrentLocation(event) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
 
+
+// Default city Starts
+function displayDefaul(response) {
+  console.log(response.data.main.temp);
+  let temperatureElement = document.querySelector("#temperature")
+  let cityElement = document.querySelector("#city");
+  let descriptionElement = document.querySelector("#description");
+  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  cityElement.innerHTML = response.data.name;
+  descriptionElement.innerHTML = response.data.weather[0].description;
+}
+
+  let units = "metric";
+  let apiKey = "27b4bb30993897eb41fd3193d860c853"; 
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Prague&appid=${apiKey}&units=${units}`;
+
+  axios.get(apiUrl).then(displayDefaul);
+
+
+
+// Default city Ends
