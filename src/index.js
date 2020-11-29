@@ -1,15 +1,11 @@
 //Date and Time Starts
 let now = new Date();
-
 let li = document.querySelector("li");
-
 let date = now.getDate();
 let hour = now.getHours();
 if (hour <10){
   hour = `0${hour}`;
 }
-
-
 let minutes = now.getMinutes();
 if (minutes <10){
   minutes = `0${minutes}`;
@@ -26,7 +22,6 @@ let days = [
 ];
 
 let day = days[now.getDay()];
-
 li.innerHTML = `${day}, ${hour}:${minutes}`;
 
 function formatHours(timestamp){
@@ -41,6 +36,8 @@ function formatHours(timestamp){
 }
 
 //Date and Time Ends 
+
+//Weather Conditions Stars 
 
 function displayWeatherCondition(response) {
   console.log(response);
@@ -61,10 +58,14 @@ function displayWeatherCondition(response) {
   `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 
 }
+//Weather Conditions Ends 
 
 
+//Search Engine Starts
 
-//API Applied
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", search);
+
 function search(event) {
   event.preventDefault();
   let apiKey = "27b4bb30993897eb41fd3193d860c853";
@@ -73,11 +74,9 @@ function search(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayWeatherCondition);
 
-  apiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayForecast);
 }
-
-
 
 function getCurrentLocation(event) {
   event.preventDefault();
@@ -86,14 +85,11 @@ function getCurrentLocation(event) {
   });
 }
 
-//
-
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
+//Search Engine Ends
 
 
 // Default city Starts
-function displayDefaul(response) {
+function displayDefault(response) {
   console.log(response.data.main.temp);
   let temperatureElement = document.querySelector("#temperature")
   let cityElement = document.querySelector("#city");
@@ -104,20 +100,18 @@ function displayDefaul(response) {
   descriptionElement.innerHTML = response.data.weather[0].description; 
   iconElement.setAttribute("src" , `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   
-  
 }
 
 let units = "metric";
   let apiKey = "27b4bb30993897eb41fd3193d860c853"; 
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Brussels&appid=${apiKey}&units=${units}`;
 
-  axios.get(apiUrl).then(displayDefaul);
+  axios.get(apiUrl).then(displayDefault);
 
 // Default city Ends
 
 
 //Weather forecast starts
-
 function displayForecast(response){
     let forecastElement = document.querySelector("#forecast"); 
     forecastElement.innerHTML = null; 
@@ -145,6 +139,9 @@ function displayForecast(response){
     }
 }
 //Weather forecast ends
+
+//Display Forecast
+
 
 
   
