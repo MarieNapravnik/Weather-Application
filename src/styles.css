@@ -34,12 +34,7 @@ li {
   padding: 30px;
   max-width: 600px;
   border-radius: 10px;
-  background-image: linear-gradient(
-    to top,
-    #f3e7e9 0%,
-    #e3eeff 99%,
-    #e3eeff 100%
-  );
+  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
 }
 
 .search-bar {
@@ -48,8 +43,7 @@ li {
 
 .weather-forecast-temperature {
   color: grey;
-  font-size: 15px;
-  text-align: center;
+  font-size: 12px;
 }
 .temperature {
   color: rgb(33, 33, 33);
@@ -75,8 +69,7 @@ form {
 .weather-forecast {
   color: gray;
   font-size: small;
-  text-align: center;
-  padding-top: 20px;
+  padding-top: 15px;
 }
 
 .weather-forecast img {
@@ -96,15 +89,10 @@ form {
 }
 
 .weather-forecast h5 {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
-  text-align: center;
   height: 15px;
   line-height: 15px;
-  padding-top: 7px;
+  padding-top: 10px;
   margin-top: 20px;
-}
-.source {
-  display: block;
-  margin: 0 auto;
 }

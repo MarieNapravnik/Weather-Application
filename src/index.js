@@ -62,35 +62,6 @@ function displayWeatherCondition(response) {
 
 }
 
-//Weather and weather forecast
-
-function displayForecast(response){
-    let forecastElement = document.querySelector("#forecast"); 
-    forecastElement.innerHTML = null; 
-    let forecast = null; 
-   
-    for (let index = 0; index < 6; index++) {
-         let forecast = response.data.list[index]; 
-        forecastElement.innerHTML +=`
-     <div class="col-2">
-            <h5> 
-            ${formatHours(forecast.dt*1000)} 
-            </h5>
-            <img 
-            src= http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png 
-            alt= ${forecast.weather[0].description}
-            />
-            
-            <div class="weather-forecast-temperature">
-              <strong> ${Math.round(forecast.main.temp_max)}º </strong> 
-              ${Math.round(forecast.main.temp_min)
-            }º
-            </div>
-          </div>
-    `;   
-    }
-}
-
 
 
 //API Applied
@@ -133,14 +104,47 @@ function displayDefaul(response) {
   descriptionElement.innerHTML = response.data.weather[0].description; 
   iconElement.setAttribute("src" , `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   
+  
 }
 
-  let units = "metric";
+let units = "metric";
   let apiKey = "27b4bb30993897eb41fd3193d860c853"; 
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Prague&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Brussels&appid=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(displayDefaul);
 
-
-
 // Default city Ends
+
+
+//Weather forecast starts
+
+function displayForecast(response){
+    let forecastElement = document.querySelector("#forecast"); 
+    forecastElement.innerHTML = null; 
+    let forecast = null; 
+   
+    for (let index = 0; index < 6; index++) {
+         let forecast = response.data.list[index]; 
+        forecastElement.innerHTML +=`
+     <div class="col-2">
+            <h5> 
+            ${formatHours(forecast.dt*1000)} 
+            </h5>
+            <img 
+            src= http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png 
+            alt= ${forecast.weather[0].description}
+            />
+            
+            <div class="weather-forecast-temperature">
+              <strong> ${Math.round(forecast.main.temp_max)}Cº </strong> 
+              ${Math.round(forecast.main.temp_min)
+            }Cº
+            </div>
+          </div>
+    `;   
+    }
+}
+//Weather forecast ends
+
+
+  
