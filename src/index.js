@@ -50,10 +50,36 @@ function displayWeatherCondition(response) {
 
 }
 
+//Weather and weather forecast
+function displayForecast(response){
+
+
+let forecastElement = document.querySelector("#forecast");
+let forecast = response.data.list[0];
+
+console.log(forecast);
+
+  forecastElement.innerHTML = `
+  <div class="col-2">
+  <h5>
+    12:00
+  </h5>
+  <img 
+  src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" 
+  alr="" 
+  />
+  <div class="weather-forecast-temperature">
+    <strong>${forecast.main.temp_max}</strong> 15°
+  </div>
+</div>
+`;
+
+
+}
 
 
 
-
+//API Applied
 function search(event) {
   event.preventDefault();
   let apiKey = "27b4bb30993897eb41fd3193d860c853";
@@ -61,6 +87,9 @@ function search(event) {
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayWeatherCondition);
+
+  apiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function getCurrentLocation(event) {

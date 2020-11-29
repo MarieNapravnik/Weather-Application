@@ -45,7 +45,7 @@ li {
   margin-bottom: 20px;
 }
 
-.temperature-forecast {
+.weather-forecast-temperature {
   color: grey;
   font-size: 15px;
   text-align: center;
@@ -71,9 +71,9 @@ form {
   padding-top: 21px;
 }
 
-.forecast {
-  color: grey;
-  font-size: 15px;
+.weather-forecast {
+  color: gray;
+  font-size: small;
   text-align: center;
   padding-top: 20px;
 }
@@ -90,10 +90,4 @@ form {
 .card {
   text-align: center;
   margin-left: 100px;
-}
-
-.source {
-  display: block;
-  text-align: center;
-  font-size: small;
 }
