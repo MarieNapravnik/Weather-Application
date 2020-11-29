@@ -69,7 +69,7 @@ console.log(forecast);
   alr="" 
   />
   <div class="weather-forecast-temperature">
-    <strong>${forecast.main.temp_max}</strong> 15°
+    <strong>${Math.round(forecast.main.temp_max)}°</strong> ${Math.round(forecast.main.temp_min)}°
   </div>
 </div>
 `;
